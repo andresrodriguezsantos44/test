@@ -223,8 +223,9 @@
              placeholder="Ingrese una descripcion a la tarea">
     </li>
     <li>
-      <label for="fecha">Fecha de expiracion</label>
-      <input type="text" id="fecha" [(ngModel)]="formData.expira" placeholder="Ingrese fecha de expiracion de la tarea">
+      <label>Fecha de expiracion</label>
+      <input  (dateSelect)="onDateSelect($event)" type="text" ngbDatepicker #d="ngbDatepicker"/>
+      <button (click)="d.toggle()">Seleccionar fecha</button>
     </li>
     <li>
       <label>¿La tarea se encuentra terminada?</label>

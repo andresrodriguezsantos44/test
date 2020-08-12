@@ -41,14 +41,19 @@ export class AppComponent implements OnInit {
   }
 
   pushData(): void {
-    axios.post(this.url, this.formData)
-      .then((response) => {
-        this.getData();
-        this.isUpdate = false;
-        this.clearData();
-      })
-      .catch((error) => {
-      });
+    const isValid = this.validateField();
+    if (isValid) {
+      axios.post(this.url, this.formData)
+        .then((response) => {
+          this.getData();
+          this.isUpdate = false;
+          this.clearData();
+        })
+        .catch((error) => {
+        });
+    } else {
+      alert('Todos los campos son requeridos');
+    }
   }
 
   deleteData(id): void {
@@ -99,4 +104,11 @@ export class AppComponent implements OnInit {
     return parseInt(number);
   }
 
+  onDateSelect(event) {
+    this.formData.expira = event.year + '-' + event.month + '-' + event.day;
+  }
+
+  validateField() {
+    return (Object.values(this.formData).filter(x => x != '').length > 4);
+  }
 }
