@@ -62,7 +62,7 @@ export class AppComponent implements OnInit {
   }
 
   setData(id) {
-    const data: any = this.arrayData.filter(x => x.id == id)[0];
+    const data: any = this.arrayData.filter(x => x != null).filter(x => x.id == id)[0];
     this.isUpdate = true;
     this.rowId = id;
     this.formData = {

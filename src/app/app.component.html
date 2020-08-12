@@ -121,6 +121,28 @@
     background-color: #476e9e;
   }
 
+  .button_red {
+    box-shadow: 0px 0px 0px 2px #bd5934;
+    background: linear-gradient(to bottom, #bd5934 5%, #bd5934 100%);
+    background-color: #bd5934;
+    border-radius: 10px;
+    border: 1px solid #bd5934;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: Arial;
+    font-size: 19px;
+    padding: 2px 15px;
+    text-decoration: none;
+    text-shadow: 0px 1px 0px #bd5934;
+    margin-left: 1vw;
+  }
+
+  .button_red:hover {
+    background: linear-gradient(to bottom, #bd5934 5%, #bd5934 100%);
+    background-color: #bd5934;
+  }
+
   .button:active {
     position: relative;
     top: 1px;
@@ -135,10 +157,39 @@
   table {
     width: 100%;
   }
-  select{
-    height: 2vw;
+
+  select {
+    height: 3vw;
   }
 
+  .content {
+    margin-bottom: 5vw;
+  }
+
+  table {
+    width: 100%;
+    background-color: #FFFFFF;
+    border-collapse: collapse;
+    border-width: 2px;
+    border-color: #7ea8f8;
+    border-style: solid;
+    color: #000000;
+  }
+
+  table td, table.customTable th {
+    border-width: 2px;
+    border-color: #7ea8f8;
+    border-style: solid;
+    padding: 5px;
+  }
+
+  table thead {
+    background-color: #7ea8f8;
+  }
+
+  .title {
+    font-size: 2vw;
+  }
 
 </style>
 
@@ -149,7 +200,7 @@
     alt="Angular Logo"
     src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg=="
   />
-  <span>Administracion de tareas</span>
+  <span class="title">Administracion de tareas</span>
   <div class="spacer"></div>
 </div>
 
@@ -159,15 +210,21 @@
   <ul class="flex-outer">
     <li>
       <label for="first-name">Nombre</label>
-      <input type="text" id="first-name" [(ngModel)]="formData.nombre" placeholder="Ingrese nombre">
+      <input type="text" id="first-name" [(ngModel)]="formData.nombre"
+             placeholder="Ingrese nombre de la persona que realiza la tarea">
+    </li>
+    <li>
+      <label for="titulo">Ingrese un titulo para la tarea</label>
+      <input type="text" id="titulo" [(ngModel)]="formData.titulo" placeholder="Ingrese titulo de la tarea">
     </li>
     <li>
       <label for="last-name">Descripcion</label>
-      <input type="text" id="last-name" [(ngModel)]="formData.descripcion" placeholder="Ingrese la descripcion">
+      <input type="text" id="last-name" [(ngModel)]="formData.descripcion"
+             placeholder="Ingrese una descripcion a la tarea">
     </li>
     <li>
       <label for="fecha">Fecha de expiracion</label>
-      <input type="text" id="fecha" [(ngModel)]="formData.expira" placeholder="Ingrese fecha de expiracion">
+      <input type="text" id="fecha" [(ngModel)]="formData.expira" placeholder="Ingrese fecha de expiracion de la tarea">
     </li>
     <li>
       <label>¿La tarea se encuentra terminada?</label>
@@ -176,10 +233,7 @@
         <option value="0">NO</option>
       </select>
     </li>
-    <li>
-      <label for="titulo">Ingrese un titulo para la tarea</label>
-      <input type="text" id="titulo" [(ngModel)]="formData.titulo" placeholder="Ingrese titulo">
-    </li>
+
     <li>
       <button *ngIf="!isUpdate" (click)="pushData()">Guardar informacion</button>
       <button *ngIf="isUpdate" (click)="updateData()">Actualizar informacion</button>
@@ -208,7 +262,7 @@
         <td *ngIf="item != null">{{item.nombre}}</td>
         <td *ngIf="item != null">
           <button class="button" (click)="setData(item.id)">editar</button>
-          <button class="button" (click)="deleteData(item.id)">eliminar</button>
+          <button class="button_red" (click)="deleteData(item.id)">eliminar</button>
         </td>
       </tr>
       </tbody>
